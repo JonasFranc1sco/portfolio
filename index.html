@@ -22,16 +22,13 @@
 
     <main class="container">
         <section class="hero">
-            <div class="terminal-name">
-                <span class="path">~</span>
-                <span class="username">Olá, Visitante</span>
-                <span class="cursor"></span>
-            </div>
-
             <div class="hero-content">
-                <p class="spa-description">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                </p>
+                <div class="hero-text">
+                    <h1>Jonas Francisco Gouveia</h1>
+                    <p class="spa-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, cum ex doloremque repellendus, amet debitis minima, error voluptatibus at nobis inventore adipisci vero itaque nisi eos neque numquam eaque in.
+                    </p>
+                </div>
                 <div class="avatar-container">
                     <pre class="ascii-avatar" id="ascii-avatar">============================================================-                           ......:::-=====================================================================================---------:::... .......::::::::::::
 =========================================================-==:                          .::..:. :--==============================================================================--------------::......  ... ......::::::::
@@ -195,19 +192,159 @@
                 </div>
             </div>
         </section>
-        <main class="container">
-        <section class="hero">
-            <div class="terminal-name">
-                <span class="arrow">➜</span><span>&nbsp;</span>
-                <span class="folder">Projects</span><span>&nbsp;</span><span class="prompt">ls</span>
+
+        <section class="info-cards" aria-label="Resumo profissional">
+            <article class="info-card">
+                <div class="info-card-header">
+                    <span class="arrow">➜</span>
+                    <span class="folder">~/projects</span>
+                    <span class="info-card-cmd">wc -l</span>
+                </div>
+                <div class="info-card-body">
+                    <div class="info-stat">02</div>
+                    <p class="info-title">Projetos em desenvolvimento</p>
+                    <p class="info-desc">
+                        Construindo o <strong>AutoGestor</strong> e este <strong>Portfólio Interativo</strong> com foco em arquitetura limpa e resolução de problemas reais.
+                    </p>
+                </div>
+            </article>
+
+            <article class="info-card">
+                <div class="info-card-header">
+                    <span class="arrow">➜</span>
+                    <span class="folder">~/stack</span>
+                    <span class="info-card-cmd">cat skills.txt</span>
+                </div>
+                <div class="info-card-body">
+                    <p class="info-title">Stacks &amp; Ferramentas</p>
+                    <div class="stack-tags">
+                        <span class="stack-tag">Node.js</span>
+                        <span class="stack-tag">TypeScript</span>
+                        <span class="stack-tag">JavaScript</span>
+                        <span class="stack-tag">Python</span>
+                        <span class="stack-tag">PostgreSQL</span>
+                        <span class="stack-tag">Docker</span>
+                        <span class="stack-tag">Linux / Fedora</span>
+                        <span class="stack-tag">Git</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="info-card">
+                <div class="info-card-header">
+                    <span class="arrow">➜</span>
+                    <span class="folder">~/education</span>
+                    <span class="info-card-cmd">whoami --edu</span>
+                </div>
+                <div class="info-card-body">
+                    <p class="info-title">Sistemas de Informação</p>
+                    <p class="info-desc">
+                        Graduação voltada para Engenharia de Software, estrutura de dados, banco de dados e desenvolvimento back-end.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <section class="terminal-widget" id="terminal-widget">
+            <div class="terminal-header">
+                <img src="images/fedora-icon.webp" alt="Fedora" class="terminal-fedora-icon" />
+                <span class="terminal-title">jonas@fedora: <span id="terminal-header-cwd">~/Projects</span></span>
+            </div>
+
+            <div class="terminal-body" id="terminal-body">
+                <div class="terminal-hint">
+                    Clique no prompt ou use <code>Tab</code> / <code>↑↓</code> para navegar nas opções pré-definidas.
+                </div>
+
+                <div id="terminal-output" class="terminal-output" aria-live="polite"></div>
+
+                <div class="terminal-input-row">
+                    <span class="arrow">➜</span>
+                    <span id="terminal-cwd" class="folder">Projects</span>
+                    <div class="autocomplete-container">
+                        <input
+                            id="terminal-input"
+                            class="terminal-input"
+                            type="text"
+                            autocomplete="off"
+                            spellcheck="false"
+                            placeholder="Digite um comando (ex: cd autogestor)..."
+                            aria-label="Comando do terminal"
+                            aria-autocomplete="list"
+                            aria-controls="terminal-dropdown"
+                        />
+                        <ul id="terminal-dropdown" class="terminal-dropdown hidden" role="listbox"></ul>
+                    </div>
+                </div>
             </div>
         </section>
         <section class="hero">
-            <div class="terminal-name">
-                <span class="arrow">➜</span><span>&nbsp;</span>
-                <span class="folder">Projects</span><span>&nbsp;</span><span class="prompt">ls</span>
+            <div class="hero-content">
+<div class="avatar-container">
+                    <pre class="ascii-avatar-gopher" id="ascii-avatar">                                              @@@:::@@          @                                   
+                                        @::::::@@::@@@::::@ @::::::@@                               
+                                    @:::::::@:::::::::::@:::@:-@@::::@                              
+                                 @::::::::@*:::::::::::::@::::@@@@::::                              
+                               @:::::::::::::::::::::@@@@@@:::::@@:::%                              
+                            @::::::::::::@:::::::::::@@@@@::::::::@::@                              
+                         @@:::%::::::::::@::::::::::::@@@:::::::::::@                               
+                       @::@::::::::@@:::::@:::::::::::::::@:::::::::::%                             
+                     @::@::::::::::::@:::::::::::::::::::@:::::::::::::@                            
+                    @::@:::::::::@@@@@@:::::@::::::::::-@:::::::::::::::                            
+                   @::@::::::::::@@@:@:@:::::::@@@@@@+:::::::::::::::::::                           
+                  @:::@:::::::::::@@@::@::@@@:@::::::::::::::::::::::::::@                          
+              @-::@:::=::::::::::::::::@@@@@@@@::::@::::::::::::::::::::::@                         
+             @::::@::::@::::::::::::::@:@@@@@:::::::@::::::::::::::::::::::                         
+            @::::@@:::::@::::::::::::@:@::::::::::@@:::::::::::::::::::::::@                        
+            @:::@@@::::::::@::::::@::::+::::#@@:::@:::::::::::::::::::::::::@                       
+            @:::::@::::::::::::::::::::@::@@:::@:::@:::::::::::::::::::::::::@@                     
+             @@:::@:::::::::::::::::::::::::@:::@::@::::::::::::::::::::::::::@@                    
+                 @@:::::::::::::::::::::::::::::@::::::::::::::::::::::::::::::@                    
+                   @::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::@::::@%             
+                    ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::*+::::@             
+                    @::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::@@:::              
+                     @:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::@@                 
+                      @::::::::::::::::::::::::::::::::::::::::::::::::::::::::::@@                 
+                       @::::::::::::::::::::::::::::::::::::::::::::::::::::::::::@                 
+                        @::::::::::::::::::::::::::::::::::::::::::@::::::::::::::@                 
+                         @:::::::::::::::::::::::::::::::::::::::::@@:::::::::::::@                 
+                          @::::::::::::::::::::::::::::::::::@@@@:::@::::::::::::::@                
+                           @@::::::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                            @@:::::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                             @:::::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                              @::::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                               ::::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                               @:::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                               @@::::::::::::::::::::::::::::::::::::::::::::::::::@                
+                                @::::::::::::::::::::::::::::::::::::::::::::::::::                 
+                                @:::::::::::::::::::::::::::::::::::::::::::::::::@                 
+                                @:::::::::::::::::::::::::::::::::::::::::::::::::@                 
+                                @:::::::::::::::::::::::::::::::::::::::::::::::::@                 
+                                %::::::::::::::::::::::::::::::::::::::::::::::::@                  
+                                 ::::::::::::::::::::::::::::::::::::::::::::::::@                  
+                                @::::::::::::::::::::::::::::::::::::::::::::::::@                  
+                                @:::::::::::::::::::::::::::::::::::::::::::::::@::::@              
+                                @::::::::::::::::::::::::::::::::::::::::::::::@::::::              
+                                 ::::::::::::::::::::::::::::::::::::::::::::@    @::@              
+                                 @:::::::::::::::::::::::::::::::::::::::::@@                       
+                                 @@::::::::::::::::::::::::::::::::::::::@                          
+                                @::@::::::::::::::::::::::::::::::::::@@                            
+                                    @::::::::::::::::::::::::::::::@                                
+                                      @:::::::::::::::::::::::@@@                                   
+                                        @@@::@@::::::::::@@@                                        
+                                         @:::::@@@@@@                                               
+                                        @:::::@                                                     
+                                       @:@:::@                                                      
+                                        @@@@@                                                       
+</pre>
+                </div>
+                <div class="hero-text">
+                    <h1>Golang</h1>
+                    <p class="spa-description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, cum ex doloremque repellendus, amet debitis minima, error voluptatibus at nobis inventore adipisci vero itaque nisi eos neque numquam eaque in.
+                    </p>
+                </div>
             </div>
-            
         </section>
     </main>
 </body>
