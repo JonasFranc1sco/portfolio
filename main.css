@@ -8,11 +8,10 @@ body {
     padding: 0;
     width: 100%;
     min-height: 100vh;
-    background-color: #1e1e1e;
-    color: #e5e5e5;
+    background-color: #f5f5f5;
+    color: #1a1a1a;
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
     line-height: 1.6;
-    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 .topbar {
@@ -33,7 +32,7 @@ body {
 
 .topbar-nav a {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    color: #ffffff;
+    color: #1a1a1a;
     text-decoration: underline;
     text-underline-offset: 4px;
     font-size: 1.1rem;
@@ -41,26 +40,6 @@ body {
 }
 
 .topbar-nav a:hover {
-    opacity: 0.8;
-}
-
-.theme-toggle {
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 1.1rem;
-    background: transparent;
-    color: #ffffff;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    transition: opacity 0.2s ease, color 0.2s ease;
-}
-
-.theme-toggle:hover {
     opacity: 0.8;
 }
 
@@ -80,7 +59,7 @@ body {
 .terminal-name {
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
     font-size: 1.75rem;
-    color: hsl(0, 0%, 90%);
+    color: #1a1a1a;
     padding: 0.5rem 0;
     border-radius: 8px;
     display: inline-flex;
@@ -88,25 +67,25 @@ body {
 }
 
 .terminal-name .path {
-    color: #61d6d6;
+    color: #0b7285;
     font-weight: bold;
     margin-right: 0.5rem;
 }
 
 .arrow {
-    color: #52dc56;
+    color: #1a7f37;
     font-weight: bold;
     margin-right: 0.5rem;
     user-select: none;
 }
 
 .terminal-name .username {
-    color: #cccccc;
+    color: #1a1a1a;
     font-weight: 500;
 }
 
 .folder {
-    color: #61afd6;
+    color: #0b7285;
     font-weight: bold;
     margin-right: 0.65rem;
     user-select: none;
@@ -133,7 +112,7 @@ body {
 
 .spa-description {
     margin: 0;
-    color: #b3b3b3;
+    color: #4a4a4a;
     font-size: 1rem;
 }
 
@@ -143,7 +122,7 @@ body {
     border-radius: 50%;
     overflow: hidden;
     flex-shrink: 0;
-    background-color: #1e1e1e;
+    background-color: #f5f5f5;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -155,7 +134,7 @@ body {
     font-size: 10px;
     line-height: 11px;
     letter-spacing: 0;
-    color: #e5e5e5;
+    color: #1a1a1a;
     white-space: pre;
     transform: scale(0.22);
     transform-origin: center center;
@@ -165,10 +144,23 @@ body {
 .ascii-avatar-gopher {
     margin: 0;
     font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 15px;
-    line-height: 15px;
+    font-size: 12px;
+    line-height: 12px;
     letter-spacing: 0;
-    color: #e5e5e5;
+    color: #1a1a1a;
+    white-space: pre;
+    transform: scale(0.22);
+    transform-origin: center center;
+    user-select: none;
+}
+
+.ascii-avatar-strong {
+    margin: 0;
+    font-family: 'Fira Code', 'Courier New', Courier, monospace;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 0;
+    color: #1a1a1a;
     white-space: pre;
     transform: scale(0.22);
     transform-origin: center center;
@@ -184,8 +176,8 @@ body {
 }
 
 .info-card {
-    background-color: #141414;
-    border: 1px solid #2e2e2e;
+    background-color: #ffffff;
+    border: 1px solid #d6d6d6;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -202,13 +194,13 @@ body {
     display: flex;
     align-items: center;
     padding: 0.55rem 1rem;
-    background-color: #252526;
-    border-bottom: 1px solid #2e2e2e;
+    background-color: #ececec;
+    border-bottom: 1px solid #d6d6d6;
     font-size: 0.85rem;
 }
 
 .info-card-cmd {
-    color: #9e9e9e;
+    color: #555555;
 }
 
 .info-card-body {
@@ -222,26 +214,35 @@ body {
 .info-stat {
     font-size: 2rem;
     font-weight: 700;
-    color: #3cd634;
+    color: #1a7f37;
     line-height: 1.1;
+}
+
+.info-badge {
+    color: #1a7f37;
+    background-color: rgba(26, 127, 55, 0.08);
+    border: 1px solid rgba(26, 127, 55, 0.25);
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 .info-title {
     margin: 0;
     font-size: 1.05rem;
     font-weight: 600;
-    color: #ffffff;
+    color: #1a1a1a;
 }
 
 .info-desc {
     margin: 0;
     font-size: 0.9rem;
-    color: #b3b3b3;
+    color: #4a4a4a;
     line-height: 1.5;
 }
 
 .info-desc strong {
-    color: #e5e5e5;
+    color: #1a1a1a;
 }
 
 .stack-tags {
@@ -253,324 +254,9 @@ body {
 
 .stack-tag {
     font-size: 0.82rem;
-    color: #61d6d6;
-    background-color: #1f1f22;
-    border: 1px solid #323236;
+    color: #0b7285;
+    background-color: #f0f4f8;
+    border: 1px solid #d0d7de;
     padding: 0.2rem 0.55rem;
     border-radius: 5px;
-}
-
-/* --- Mini Terminal Interativo --- */
-.terminal-widget {
-    background-color: #141414;
-    border: 1px solid #2e2e2e;
-    border-radius: 10px;
-    overflow: visible;
-    margin-top: 0.5rem;
-}
-
-.terminal-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1rem;
-    background-color: #252526;
-    border-bottom: 1px solid #2e2e2e;
-    border-radius: 10px 10px 0 0;
-}
-
-.terminal-fedora-icon {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    display: inline-block;
-    user-select: none;
-}
-
-.terminal-title {
-    margin-left: 0.25rem;
-    font-size: 0.85rem;
-    color: #9e9e9e;
-}
-
-.terminal-body {
-    padding: 1.25rem 1.5rem;
-    min-height: 220px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-}
-
-.terminal-hint {
-    font-size: 0.85rem;
-    color: #808080;
-    margin-bottom: 0.25rem;
-}
-
-.terminal-hint code {
-    background-color: #262626;
-    color: #1f86e1;
-    padding: 0.1rem 0.4rem;
-    border-radius: 4px;
-}
-
-.terminal-output {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    font-size: 1rem;
-}
-
-.terminal-entry {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-}
-
-.terminal-command-line {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    font-size: 1.05rem;
-}
-
-.terminal-command-text {
-    color: #ffffff;
-    font-weight: 500;
-}
-
-.terminal-response {
-    color: #cccccc;
-    padding-left: 1.5rem;
-    white-space: pre-wrap;
-    font-size: 0.96rem;
-    line-height: 1.55;
-}
-
-.terminal-response a {
-    color: #61d6d6;
-    text-decoration: underline;
-}
-
-.terminal-response .highlight {
-    color: #3cd634;
-    font-weight: bold;
-}
-
-.terminal-response .error-text {
-    color: #ff6b6b;
-}
-
-.terminal-input-row {
-    display: flex;
-    align-items: center;
-    font-size: 1.05rem;
-    position: relative;
-    margin-top: 0.25rem;
-}
-
-.autocomplete-container {
-    position: relative;
-    flex: 1;
-    display: flex;
-    align-items: center;
-}
-
-.terminal-input {
-    width: 100%;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: #e5e5e5;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 1.05rem;
-    padding: 0.25rem 0;
-    caret-color: #3cd634;
-}
-
-.terminal-input::placeholder {
-    color: #5a5a5a;
-}
-
-/* --- Dropdown de Autocomplete --- */
-.terminal-dropdown {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    right: 0;
-    max-width: 540px;
-    max-height: 240px;
-    overflow-y: auto;
-    margin: 0;
-    padding: 0.35rem;
-    list-style: none;
-    background-color: #202022;
-    border: 1px solid #38383d;
-    border-radius: 8px;
-    z-index: 50;
-}
-
-.terminal-dropdown.hidden {
-    display: none;
-}
-
-.dropdown-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.55rem 0.75rem;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.15s ease;
-}
-
-.dropdown-item:hover,
-.dropdown-item.active {
-    background-color: #2d3139;
-}
-
-.dropdown-cmd {
-    color: #3cd634;
-    font-weight: 600;
-    font-size: 0.95rem;
-}
-
-.dropdown-desc {
-    color: #9a9a9a;
-    font-size: 0.82rem;
-    text-align: right;
-}
-
-/* --- Light Mode --- */
-body.light-mode {
-    background-color: #f5f5f5;
-    color: #1a1a1a;
-}
-
-body.light-mode .topbar-nav a,
-body.light-mode .theme-toggle {
-    color: #1a1a1a;
-}
-
-body.light-mode .terminal-name,
-body.light-mode .terminal-name .username {
-    color: #1a1a1a;
-}
-
-body.light-mode .spa-description {
-    color: #4a4a4a;
-}
-
-body.light-mode .avatar-container {
-    background-color: #f5f5f5;
-}
-
-body.light-mode .ascii-avatar {
-    color: #1a1a1a;
-}
-
-body.light-mode .ascii-avatar-gopher {
-    margin: 0;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 15px;
-    line-height: 15px;
-    letter-spacing: 0;
-    color: #1a1a1a;
-    white-space: pre;
-    transform: scale(0.22);
-    transform-origin: center center;
-    user-select: none;
-}
-
-body.light-mode .terminal-widget {
-    background-color: #ffffff;
-    border-color: #d6d6d6;
-}
-
-body.light-mode .terminal-header {
-    background-color: #ececec;
-    border-bottom-color: #d6d6d6;
-}
-
-body.light-mode .terminal-title {
-    color: #555555;
-}
-
-body.light-mode .terminal-hint code {
-    background-color: #eeeeee;
-    color: #0b7285;
-}
-
-body.light-mode .folder,
-body.light-mode .terminal-name .path {
-    color: #0b7285;
-}
-
-body.light-mode .arrow,
-body.light-mode .dropdown-cmd,
-body.light-mode .terminal-response .highlight {
-    color: #1a7f37;
-}
-
-body.light-mode .terminal-command-text,
-body.light-mode .terminal-input {
-    color: #1a1a1a;
-}
-
-body.light-mode .terminal-response {
-    color: #333333;
-}
-
-body.light-mode .terminal-dropdown {
-    background-color: #ffffff;
-    border-color: #d0d0d0;
-}
-
-body.light-mode .dropdown-item:hover,
-body.light-mode .dropdown-item.active {
-    background-color: #f0f4f8;
-}
-
-body.light-mode .dropdown-desc {
-    color: #666666;
-}
-
-body.light-mode .info-card {
-    background-color: #ffffff;
-    border-color: #d6d6d6;
-}
-
-body.light-mode .info-card-header {
-    background-color: #ececec;
-    border-bottom-color: #d6d6d6;
-}
-
-body.light-mode .info-card-cmd {
-    color: #555555;
-}
-
-body.light-mode .info-stat {
-    color: #1a7f37;
-}
-
-body.light-mode .info-badge {
-    color: #1a7f37;
-    background-color: rgba(26, 127, 55, 0.08);
-    border-color: rgba(26, 127, 55, 0.25);
-}
-
-body.light-mode .info-title,
-body.light-mode .info-desc strong {
-    color: #1a1a1a;
-}
-
-body.light-mode .info-desc {
-    color: #4a4a4a;
-}
-
-body.light-mode .stack-tag {
-    color: #0b7285;
-    background-color: #f0f4f8;
-    border-color: #d0d7de;
 }

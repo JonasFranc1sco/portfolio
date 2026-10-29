@@ -13,10 +13,6 @@
             <a href="#pt" data-lang="pt">Português</a>
             <a href="#en" data-lang="en">Inglês</a>
             <a href="#es" data-lang="es">Espanhol</a>
-            <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Alternar tema">
-                <span class="theme-icon">☀</span>
-                <span class="theme-label">light</span>
-            </button>
         </nav>
     </header>
 
@@ -193,92 +189,8 @@
             </div>
         </section>
 
-        <section class="info-cards" aria-label="Resumo profissional">
-            <article class="info-card">
-                <div class="info-card-header">
-                    <span class="arrow">➜</span>
-                    <span class="folder">~/projects</span>
-                    <span class="info-card-cmd">wc -l</span>
-                </div>
-                <div class="info-card-body">
-                    <div class="info-stat">02</div>
-                    <p class="info-title">Projetos em desenvolvimento</p>
-                    <p class="info-desc">
-                        Construindo o <strong>AutoGestor</strong> e este <strong>Portfólio Interativo</strong> com foco em arquitetura limpa e resolução de problemas reais.
-                    </p>
-                </div>
-            </article>
-
-            <article class="info-card">
-                <div class="info-card-header">
-                    <span class="arrow">➜</span>
-                    <span class="folder">~/stack</span>
-                    <span class="info-card-cmd">cat skills.txt</span>
-                </div>
-                <div class="info-card-body">
-                    <p class="info-title">Stacks &amp; Ferramentas</p>
-                    <div class="stack-tags">
-                        <span class="stack-tag">Node.js</span>
-                        <span class="stack-tag">TypeScript</span>
-                        <span class="stack-tag">JavaScript</span>
-                        <span class="stack-tag">Python</span>
-                        <span class="stack-tag">PostgreSQL</span>
-                        <span class="stack-tag">Docker</span>
-                        <span class="stack-tag">Linux / Fedora</span>
-                        <span class="stack-tag">Git</span>
-                    </div>
-                </div>
-            </article>
-
-            <article class="info-card">
-                <div class="info-card-header">
-                    <span class="arrow">➜</span>
-                    <span class="folder">~/education</span>
-                    <span class="info-card-cmd">whoami --edu</span>
-                </div>
-                <div class="info-card-body">
-                    <p class="info-title">Sistemas de Informação</p>
-                    <p class="info-desc">
-                        Graduação voltada para Engenharia de Software, estrutura de dados, banco de dados e desenvolvimento back-end.
-                    </p>
-                </div>
-            </article>
-        </section>
-
-        <section class="terminal-widget" id="terminal-widget">
-            <div class="terminal-header">
-                <img src="images/fedora-icon.webp" alt="Fedora" class="terminal-fedora-icon" />
-                <span class="terminal-title">jonas@fedora: <span id="terminal-header-cwd">~/Projects</span></span>
-            </div>
-
-            <div class="terminal-body" id="terminal-body">
-                <div class="terminal-hint">
-                    Clique no prompt ou use <code>Tab</code> / <code>↑↓</code> para navegar nas opções pré-definidas.
-                </div>
-
-                <div id="terminal-output" class="terminal-output" aria-live="polite"></div>
-
-                <div class="terminal-input-row">
-                    <span class="arrow">➜</span>
-                    <span id="terminal-cwd" class="folder">Projects</span>
-                    <div class="autocomplete-container">
-                        <input
-                            id="terminal-input"
-                            class="terminal-input"
-                            type="text"
-                            autocomplete="off"
-                            spellcheck="false"
-                            placeholder="Digite um comando (ex: cd autogestor)..."
-                            aria-label="Comando do terminal"
-                            aria-autocomplete="list"
-                            aria-controls="terminal-dropdown"
-                        />
-                        <ul id="terminal-dropdown" class="terminal-dropdown hidden" role="listbox"></ul>
-                    </div>
-                </div>
-            </div>
-        </section>
         <section class="hero">
+            <h1>Projetos</h1>
             <div class="hero-content">
 <div class="avatar-container">
                     <pre class="ascii-avatar-gopher" id="ascii-avatar">                                              @@@:::@@          @                                   
@@ -339,10 +251,87 @@
 </pre>
                 </div>
                 <div class="hero-text">
-                    <h1>Golang</h1>
+                    <h2>VagouBot</h2>
                     <p class="spa-description">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, cum ex doloremque repellendus, amet debitis minima, error voluptatibus at nobis inventore adipisci vero itaque nisi eos neque numquam eaque in.
+                        Scraper de vagas do LinkedIn que busca postings com base em palavras-chave, aplica filtros de relevância e envia as vagas encontradas para um bot no Telegram.
                     </p>
+                    <a href="https://github.com/JonasFranc1sco/vagouBot">https://github.com/JonasFranc1sco/vagouBot</a>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Autogestor</h2>
+                    <p class="spa-description">
+                        Sistema Web para gestão de oficinas, mantém funcionalidades como manuseio de Clientes, Veículos, Produtos, Serviços, Ordem de Serviço, caixa, análise de dados e resultados.
+                    </p>
+                    <a href="autogestor.wollimap.com.br/">autogestor.wollimap.com.br/</a>
+                </div>
+            </div>
+
+            <div class="hero-content">
+                <div class="avatar-container">
+                    <pre class="ascii-avatar-strong" id="ascii-avatar">                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                          .                                                         
+                                      ..:::....                                                     
+                                    ..---------:...                                                 
+                                   .:---------------..                                              
+                                  .--------=-------=..                                              
+                                ..---------------=-..                                               
+                               ..-------------------:.                                              
+                               .:-------------------:.                                              
+                               .-------------------..                                               
+                               .=----------------:.                                                 
+                               .=-------------=:.                                                   
+                               :-----------:...                                                     
+                              .---------:....                                                       
+                              .---------:.                                                          
+                            ..----------:.                                                          
+                            .:----------:.                                                          
+                           ..------------.                                                          
+                           .-------------.                                                          
+                          .:-------------:          ...........                                     
+                          .--------------:      ...:-----------:...                                 
+                          .--------------:  ...:--------------------:...                            
+                          :--------------: ..-------------------------:...                          
+                          ---------------:.:----------------------------:..                         
+                         .=--------------.--------------------------------.                         
+                         .=-----------------------------------------------:.                        
+                         .=-----------------------------------------------:.                        
+                         .=-----------------------------------------------:.                        
+                         .=-----------------------------------------------..                        
+                         :=----------------------------------------------:.                         
+                         :----------------------------------------------..                          
+                         --------------------------------------------...                            
+                         :=--------------------------------------:....                              
+                          ..:::::::::::::::::::::----::::::....                                     
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                                  
+</pre>
+                </div>
+                <div class="hero-text">
+                    <h2>Questionário de Baecke</h2>
+                    <p class="spa-description">
+                        Formulário Web que digitaliza e automatiza a aplicação do Questionário de Atividade Física Habitual formulado originalmente por Baecke, Burema e Frijters (1982) e adaptado e validado transculturalmente para a população brasileira no estudo de referência de Florindo et al. (2004).
+                    </p>
+                    <a href="autogestor.wollimap.com.br/">autogestor.wollimap.com.br/</a>
                 </div>
             </div>
         </section>
