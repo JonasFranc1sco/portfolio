@@ -1,0 +1,16 @@
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    avatar_url TEXT,
+    provider VARCHAR(50) NOT NULL,
+    provider_id VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'author',
+    totp_secret TEXT,
+    totp_enabled BOOLEAN NOT NULL DEFAULT FALSE,
+
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    UNIQUE(provider, provider_id)
+);
