@@ -2,6 +2,7 @@ package services
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 	"time"
@@ -136,6 +137,26 @@ func (s *AuthService) VerifyAndComplete2FA(ctx context.Context, userID int64, co
 	}
 
 	return fullToken, nil
+}
+
+// ValidateToken faz o parse e valida a assinatura e expiração JWT
+func (s *AuthService) ValidateToken(tokenString string) (*AuthClaims, error) {
+	token, err := jwt.ParseWithClaims(tokenString, &AuthClaims{}, func(t *jwt.Token) (any, error) {
+		if _, ok := t.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("método de assinatura inesperado: %v", t.Header["alg"])
+		}
+		return s.jwtSecret, nil
+	})
+
+	if err != nil {
+		return nil, err
+	}
+
+	claims, ok := token.Claims.(*AuthClaims)
+	if !ok || !token.Valid {
+		return nil, errors.New("token inválido")
+	}
+	return claims, nil
 }
 
 func (s *AuthService) generateToken(user *models.User, stage AuthStage, duration time.Duration) (string, error) {
