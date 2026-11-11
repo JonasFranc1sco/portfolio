@@ -6,9 +6,11 @@ import (
 	"path/filepath"
 	"regexp"
 	"strings"
+	"unicode"
 
 	"github.com/JonasFranc1sco/portfolio/internal/models"
 	"github.com/JonasFranc1sco/portfolio/internal/repositories"
+	"golang.org/x/text/runes"
 	"golang.org/x/text/transform"
 	"golang.org/x/text/unicode/norm"
 )
@@ -128,7 +130,7 @@ func (s *PostService) DeletePost(ctx context.Context, userID int64, slug string)
 
 // generateSlug remove acentos e substitui espaços por hífens
 func generateSlug(title string) string {
-	t := transform.Chain(norm.NFC)
+	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
 	normalized, _, err := transform.String(t, strings.ToLower(title))
 	if err != nil {
 		normalized = strings.ToLower(title)

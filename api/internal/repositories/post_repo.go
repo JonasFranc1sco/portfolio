@@ -55,7 +55,7 @@ func (r *PostRepository) CreatePost(ctx context.Context, post *models.Post, cont
 	// Insere metadados no banco de dados
 	query := `
 		INSERT INTO posts (user_id, title, slug, summary, file_path, reading_time, created_at, updated_at)
-		VALUES (?, ?, ?, ?, ?, ? CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+		VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 		RETURNING id, created_at, updated_at`
 
 	err = r.DB.QueryRowContext(

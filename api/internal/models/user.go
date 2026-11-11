@@ -46,5 +46,5 @@ type Setup2FAResponse struct {
 
 // Verify2FAInput é o payload dos 6 digitos do Auth.
 type Verify2FAInput struct {
-	Code string `json:"code" binding:"required,len-6"`
+	Code string `json:"code" binding:"required,len=6"`
 }

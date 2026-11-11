@@ -59,6 +59,7 @@ func (h *AuthHandler) OAuthCallBack(c *gin.Context) {
 	if err != nil {
 		if errors.Is(err, models.ErrEmailNotAllowed) {
 			c.Redirect(http.StatusTemporaryRedirect, h.frontendURL+"/login?error=unauthorized_author")
+			return
 		}
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro interno ao processar login"})
 		return
