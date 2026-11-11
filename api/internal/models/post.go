@@ -22,7 +22,7 @@ type Post struct {
 	Summary     string    `json:"summary"`
 	FilePath    string    `json:"-"`
 	Content     string    `json:"content,omitempty"`
-	ReadingTime string    `json:"reading_time"`
+	ReadingTime int       `json:"reading_time"`
 	CreatedAt   time.Time `json:"created_at"`
 	UpdatedAt   time.Time `json:"updated_at"`
 }
