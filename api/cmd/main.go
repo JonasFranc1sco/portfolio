@@ -29,12 +29,21 @@ func main() {
 	jwtSecret := os.Getenv("JWT_SECRET")
 	allowedEmails := strings.Split(os.Getenv("ALLOWED_AUTHOR_EMAILS"), ",")
 	frontendURL := os.Getenv("FRONTEND_URL")
+	postsStorageDir := "./content/posts"
 	isProd := os.Getenv("GIN_MODE") == "release"
 
 	// Injeção de dependências
+	// Camada de repositórios
 	userRepo := repositories.NewUserRepository(db)
+	postRepo := repositories.NewPostRepository(db)
+
+	// Camada de Serviços
 	authService := services.NewAuthService(userRepo, jwtSecret, allowedEmails, "JonasFrancisco")
+	postService := services.NewPostService(postRepo, postsStorageDir)
+
+	// Camada de Handlers
 	authHandler := handlers.NewAuthHandler(authService, frontendURL, isProd)
+	postHandler := handlers.NewPostHandler(postService)
 
 	// Configuração de rotas
 	router := gin.Default()
@@ -58,10 +67,19 @@ func main() {
 		}
 
 		// Rotas protegidas
-		author := api.Group("/posts")
-		author.Use(middleware.RequireStage(authService, services.StageAuthenticated))
+		posts := api.Group("/posts")
 		{
-			// Rotas de posts
+			posts.GET("", postHandler.ListPosts)
+			posts.GET("/:slug", postHandler.GetPostBySlug)
+
+			// Rotas protegidas
+			protected := posts.Group("")
+			protected.Use(middleware.RequireStage(authService, services.StageAuthenticated))
+			{
+				protected.POST("", postHandler.CreatePost)
+				protected.PUT("/:slug", postHandler.UpdatePost)
+				protected.DELETE("/:slug", postHandler.DeletePost)
+			}
 		}
 	}
 
