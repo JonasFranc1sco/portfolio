@@ -1,6 +1,7 @@
 package config
 
 import (
+	"net/http"
 	"os"
 
 	"github.com/gorilla/sessions"
@@ -20,6 +21,7 @@ func InitGothOAuth() {
 	store.Options.Path = "/"
 	store.Options.HttpOnly = true
 	store.Options.Secure = isProd
+	store.Options.SameSite = http.SameSiteLaxMode
 
 	gothic.Store = store
 
