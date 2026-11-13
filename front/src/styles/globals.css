@@ -31,12 +31,37 @@
 html,
 body {
     font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-variant-ligatures: contextual;
     font-variant-ligatures: contextual;
     -webkit-font-kerning: normal;
     font-kerning: normal;
+}
+
+@keyframes heading-smooth-light {
+    0% {
+        background-color: transparent;
+        box-shadow: -4px 0 0 0 transparent, 0 0 0 0 transparent;
+    }
+    15%,
+    40% {
+        background-color: rgb(14 165 233 / 0.14);
+        box-shadow: -4px 0 0 0 var(--color-border-brand), 0 0 24px -4px rgb(14 165 233 / 0.28);
+    }
+    100% {
+        background-color: transparent;
+        box-shadow: -4px 0 0 0 transparent, 0 0 0 0 transparent;
+    }
+}
+
+.heading-smooth-light {
+    border-radius: var(--radius-md);
+    padding-inline: 0.5rem;
+    margin-inline: -0.5rem;
+    animation: heading-smooth-light 2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 /* Hide the default expand arrow on Safari.  */

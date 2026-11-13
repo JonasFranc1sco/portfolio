@@ -498,7 +498,7 @@
     /* DARK MODE VARIABLES */
 
     .dark-mode {
-        --color-alpha-white: rgb(12 14 18);
+        --color-alpha-white: #191919;
         --color-alpha-black: rgb(255 255 255);
 
         /* UTILITY COLORS */
@@ -705,7 +705,7 @@
         --color-fg-brand-secondary_alt: var(--color-neutral-600);
         --color-fg-brand-secondary_hover: var(--color-neutral-500);
 
-        --color-bg-primary: var(--color-neutral-950);
+        --color-bg-primary: #191919;
         --color-bg-tertiary: var(--color-neutral-800);
         --color-bg-brand-primary: var(--color-brand-500);
         --color-bg-error-secondary: var(--color-red-600);
