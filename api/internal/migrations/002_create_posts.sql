@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS posts (
     user_id INTEGER NOT NULL,
     title VARCHAR(255) NOT NULL,
     slug VARCHAR(255) NOT NULL UNIQUE,
+    topic VARCHAR(100) NOT NULL DEFAULT 'geral',
     summary TEXT NOT NULL DEFAULT '',
     file_path TEXT NOT NULL,
     reading_time INTEGER NOT NULL DEFAULT 1,
@@ -13,3 +14,4 @@ CREATE TABLE IF NOT EXISTS posts (
 );
 
 CREATE INDEX IF NOT EXISTS idx_posts_slug ON posts(slug);
+CREATE INDEX IF NOT EXISTS idx_posts_topic ON posts(topic);

@@ -15,7 +15,8 @@ import (
 // PostRepositoryInterface define contrato que o PostService utilizará
 type PostRepositoryInterface interface {
 	CreatePost(ctx context.Context, post *models.Post, content string) error
-	GetAllPosts(ctx context.Context, limit, offset int) ([]models.Post, error)
+	GetAllPosts(ctx context.Context, topic string, limit, offset int) ([]models.Post, error)
+	GetAllTopics(ctx context.Context) ([]string, error)
 	GetPostBySlug(ctx context.Context, slug string) (*models.Post, error)
 	UpdatePost(ctx context.Context, post *models.Post, content string) error
 	DeletePost(ctx context.Context, slug string) error
@@ -54,8 +55,8 @@ func (r *PostRepository) CreatePost(ctx context.Context, post *models.Post, cont
 
 	// Insere metadados no banco de dados
 	query := `
-		INSERT INTO posts (user_id, title, slug, summary, file_path, reading_time, created_at, updated_at)
-		VALUES (?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+		INSERT INTO posts (user_id, title, slug, topic, summary, file_path, reading_time, created_at, updated_at)
+		VALUES (?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
 		RETURNING id, created_at, updated_at`
 
 	err = r.DB.QueryRowContext(
@@ -64,6 +65,7 @@ func (r *PostRepository) CreatePost(ctx context.Context, post *models.Post, cont
 		post.UserID,
 		post.Title,
 		post.Slug,
+		post.Topic,
 		post.Summary,
 		post.FilePath,
 		post.ReadingTime,
@@ -80,16 +82,32 @@ func (r *PostRepository) CreatePost(ctx context.Context, post *models.Post, cont
 	return nil
 }
 
-// GetAllPosts retorna a lista de posts com metadados do banco.
-func (r *PostRepository) GetAllPosts(ctx context.Context, limit, offset int) ([]models.Post, error) {
-	query := `
-		SELECT id, user_id, title, slug, summary, reading_time, created_at, updated_at
-		FROM posts
-		ORDER BY created_at DESC
-		LIMIT ? OFFSET ?
-	`
+// GetAllPosts retorna a lista de posts com metadados do banco (com filtro opcional por topic).
+func (r *PostRepository) GetAllPosts(ctx context.Context, topic string, limit, offset int) ([]models.Post, error) {
+	var (
+		rows *sql.Rows
+		err  error
+	)
 
-	rows, err := r.DB.QueryContext(ctx, query, limit, offset)
+	if topic != "" {
+		query := `
+			SELECT id, user_id, title, slug, topic, summary, reading_time, created_at, updated_at
+			FROM posts
+			WHERE topic = ?
+			ORDER BY created_at DESC
+			LIMIT ? OFFSET ?
+		`
+		rows, err = r.DB.QueryContext(ctx, query, topic, limit, offset)
+	} else {
+		query := `
+			SELECT id, user_id, title, slug, topic, summary, reading_time, created_at, updated_at
+			FROM posts
+			ORDER BY created_at DESC
+			LIMIT ? OFFSET ?
+		`
+		rows, err = r.DB.QueryContext(ctx, query, limit, offset)
+	}
+
 	if err != nil {
 		return nil, fmt.Errorf("erro ao listar posts: %w", err)
 	}
@@ -104,6 +122,7 @@ func (r *PostRepository) GetAllPosts(ctx context.Context, limit, offset int) ([]
 			&p.UserID,
 			&p.Title,
 			&p.Slug,
+			&p.Topic,
 			&p.Summary,
 			&p.ReadingTime,
 			&p.CreatedAt,
@@ -121,10 +140,41 @@ func (r *PostRepository) GetAllPosts(ctx context.Context, limit, offset int) ([]
 	return posts, nil
 }
 
+// GetAllTopics retorna todos os temas distintos cadastrados no banco
+func (r *PostRepository) GetAllTopics(ctx context.Context) ([]string, error) {
+	query := `
+		SELECT DISTINCT topic
+		FROM posts
+		WHERE topic != ''
+		ORDER BY topic ASC
+	`
+
+	rows, err := r.DB.QueryContext(ctx, query)
+	if err != nil {
+		return nil, fmt.Errorf("erro ao listar tópicos: %w", err)
+	}
+	defer rows.Close()
+
+	topics := []string{}
+	for rows.Next() {
+		var t string
+		if err := rows.Scan(&t); err != nil {
+			return nil, fmt.Errorf("erro ao escanear tópico: %w", err)
+		}
+		topics = append(topics, t)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return topics, nil
+}
+
 // GetPostBySlug busca metadados no banco e lê o conteúdo do .md correspondente
 func (r *PostRepository) GetPostBySlug(ctx context.Context, slug string) (*models.Post, error) {
 	query := `
-		SELECT id, user_id, title, slug, summary, file_path, reading_time, created_at, updated_at
+		SELECT id, user_id, title, slug, topic, summary, file_path, reading_time, created_at, updated_at
 		FROM posts
 		WHERE slug = ?
 	`
@@ -135,6 +185,7 @@ func (r *PostRepository) GetPostBySlug(ctx context.Context, slug string) (*model
 		&post.UserID,
 		&post.Title,
 		&post.Slug,
+		&post.Topic,
 		&post.Summary,
 		&post.FilePath,
 		&post.ReadingTime,
@@ -168,7 +219,7 @@ func (r *PostRepository) UpdatePost(ctx context.Context, post *models.Post, cont
 	// Atualiza metadados no banco
 	query := `
 		UPDATE posts
-		SET title = ?, summary = ?, reading_time = ?, updated_at = CURRENT_TIMESTAMP
+		SET title = ?, topic = ?, summary = ?, reading_time = ?, updated_at = CURRENT_TIMESTAMP
 		WHERE id = ?
 		RETURNING updated_at
 	`
@@ -177,6 +228,7 @@ func (r *PostRepository) UpdatePost(ctx context.Context, post *models.Post, cont
 		ctx,
 		query,
 		post.Title,
+		post.Topic,
 		post.Summary,
 		post.ReadingTime,
 		post.ID,

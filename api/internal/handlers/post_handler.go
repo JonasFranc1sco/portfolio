@@ -18,12 +18,13 @@ func NewPostHandler(postService *services.PostService) *PostHandler {
 	return &PostHandler{postService: postService}
 }
 
-// ListPosts retorna a lista de publicações para a Home
+// ListPosts retorna a lista de publicações para a Home (com filtro opcional por topic)
 func (h *PostHandler) ListPosts(c *gin.Context) {
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
 	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "10"))
+	topic := c.Query("topic")
 
-	posts, err := h.postService.ListPosts(c.Request.Context(), page, limit)
+	posts, err := h.postService.ListPosts(c.Request.Context(), topic, page, limit)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao buscar publicações"})
 		return
@@ -33,6 +34,20 @@ func (h *PostHandler) ListPosts(c *gin.Context) {
 		"data":  posts,
 		"page":  page,
 		"limit": limit,
+		"topic": topic,
+	})
+}
+
+// ListTopics retorna os temas distintos das publicações para montar as abas na Home
+func (h *PostHandler) ListTopics(c *gin.Context) {
+	topics, err := h.postService.ListTopics(c.Request.Context())
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "erro ao buscar temas"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+		"topics": topics,
 	})
 }
 

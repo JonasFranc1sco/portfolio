@@ -49,6 +49,7 @@ func (s *PostService) CreatePost(ctx context.Context, userID int64, input models
 		UserID:      userID,
 		Title:       strings.TrimSpace(input.Title),
 		Slug:        slug,
+		Topic:       normalizeTopic(input.Topic),
 		Summary:     summary,
 		FilePath:    fullPath,
 		ReadingTime: calculateReadingTime(input.Body),
@@ -62,8 +63,8 @@ func (s *PostService) CreatePost(ctx context.Context, userID int64, input models
 	return post, nil
 }
 
-// ListPosts retorna os posts com paginação segura
-func (s *PostService) ListPosts(ctx context.Context, page, pageSize int) ([]models.Post, error) {
+// ListPosts retorna os posts com paginação segura e filtro opcional por tema
+func (s *PostService) ListPosts(ctx context.Context, topic string, page, pageSize int) ([]models.Post, error) {
 	if page < 1 {
 		page = 1
 	}
@@ -71,8 +72,14 @@ func (s *PostService) ListPosts(ctx context.Context, page, pageSize int) ([]mode
 		pageSize = 10
 	}
 
+	cleanTopic := generateSlug(topic)
 	offset := (page - 1) * pageSize
-	return s.postRepo.GetAllPosts(ctx, pageSize, offset)
+	return s.postRepo.GetAllPosts(ctx, cleanTopic, pageSize, offset)
+}
+
+// ListTopics retorna todos os temas existentes nas publicações
+func (s *PostService) ListTopics(ctx context.Context) ([]string, error) {
+	return s.postRepo.GetAllTopics(ctx)
 }
 
 // GetPostBySlug busca um post específico
@@ -102,6 +109,7 @@ func (s *PostService) UpdatePost(ctx context.Context, userID int64, slug string,
 	}
 
 	existingPost.Title = strings.TrimSpace(input.Title)
+	existingPost.Topic = normalizeTopic(input.Topic)
 	existingPost.Summary = summary
 	existingPost.ReadingTime = calculateReadingTime(input.Body)
 
@@ -127,6 +135,15 @@ func (s *PostService) DeletePost(ctx context.Context, userID int64, slug string)
 }
 
 // Funções Auxiliares
+
+// normalizeTopic padroniza o nome do tema (ex: "Go Por Exemplo" -> "goporexemplo" ou "go-por-exemplo")
+func normalizeTopic(raw string) string {
+	clean := generateSlug(raw)
+	if clean == "" {
+		return "geral"
+	}
+	return clean
+}
 
 // generateSlug remove acentos e substitui espaços por hífens
 func generateSlug(title string) string {
